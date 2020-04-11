@@ -25,14 +25,14 @@ private:
     void creataData( int count , int number);
 private:
 
-    QOpenGLShader *  vshader;
-    QOpenGLShader *  fshader;
-    QOpenGLShaderProgram*  shaderprogram;
+    QOpenGLShader * vshader;
+    QOpenGLShader * fshader;
+    QOpenGLShaderProgram* shaderprogram;
 
-    QOpenGLTexture*  texture;
-    QOpenGLBuffer fly_Track_vbo;
-    QImage *  image;
-    QVector<GLfloat> vertData;
+    QOpenGLTexture* texture;
+    QOpenGLBuffer vbo;
+    QImage * image;
+
 
 
 };
