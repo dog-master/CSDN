@@ -1,7 +1,5 @@
-QT       += core gui opengl
-LIBS     += -lOpengl32 \
-            -lglu32 \
-            -lglut
+QT       += core gui widgets
+
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
@@ -20,13 +18,13 @@ SOURCES += \
         main.cpp \
         widget.cpp
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
     widget.h
 
 RESOURCES += \
     texture.qrc
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

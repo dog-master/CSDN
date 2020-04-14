@@ -62,8 +62,12 @@ void Widget::initializeGL()
     shaderprogram->link();
     shaderprogram->bind();
 
+    shaderprogram->bindAttributeLocation("vertex",0);
+    shaderprogram->bindAttributeLocation("color",1);
+    shaderprogram->bindAttributeLocation("texCoord",3);
 
-    texture = new QOpenGLTexture(QImage(QString(":./wall.jpg")).mirrored());
+
+    texture = new QOpenGLTexture(QImage(QString(":/wall.jpg")).mirrored());
 
     vbo.create();
     vbo.bind();
@@ -81,14 +85,18 @@ void Widget::paintGL()
     shaderprogram->bind();
     vbo.bind();
     texture->bind();
-
-
-    shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("vertex"));
-    shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("color"));
-     shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("texCoord"));
-    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("vertex"), GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
-    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("color"), GL_FLOAT,3 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
-    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("texCoord"), GL_FLOAT, 6 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
+shaderprogram->enableAttributeArray(0);
+shaderprogram->enableAttributeArray(1);
+shaderprogram->enableAttributeArray(3);
+    shaderprogram->setAttributeBuffer(0, GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
+    shaderprogram->setAttributeBuffer(1, GL_FLOAT,3 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
+    shaderprogram->setAttributeBuffer(3, GL_FLOAT, 6 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
+//    shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("vertex"));
+//    shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("color"));
+//     shaderprogram->enableAttributeArray(shaderprogram->attributeLocation("texCoord"));
+//    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("vertex"), GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
+//    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("color"), GL_FLOAT,3 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
+//    shaderprogram->setAttributeBuffer(shaderprogram->attributeLocation("texCoord"), GL_FLOAT, 6 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
 
     glDrawArrays(GL_TRIANGLES,0,3);
 

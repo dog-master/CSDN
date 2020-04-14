@@ -8,7 +8,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 #include <QOpenGLBuffer>
-
+#include <QOpenGLVertexArrayObject>
 
 class Widget : public QOpenGLWidget,protected QOpenGLFunctions
 {
@@ -16,7 +16,7 @@ class Widget : public QOpenGLWidget,protected QOpenGLFunctions
 public:
     Widget(QOpenGLWidget *parent = nullptr);
     void makeObject();
-    ~Widget();
+    ~Widget() override;
 protected:
     virtual void initializeGL() override;
     virtual void paintGL() override;
@@ -28,12 +28,10 @@ private:
     QOpenGLShader *  vshader;
     QOpenGLShader *  fshader;
     QOpenGLShaderProgram*  shaderprogram;
-
     QOpenGLTexture*  texture;
-    QOpenGLBuffer fly_Track_vbo;
+    QOpenGLBuffer vbo;
+    QOpenGLVertexArrayObject vao;
     QImage *  image;
-    QVector<GLfloat> vertData;
-
 
 };
 
